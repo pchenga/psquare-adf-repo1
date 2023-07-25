@@ -1,0 +1,40 @@
+{
+	"name": "DS_AzureSqlTable_Source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSqlDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "sql_ds"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "eid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ename",
+				"type": "nvarchar"
+			},
+			{
+				"name": "sal",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "deptid",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "emp_table"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

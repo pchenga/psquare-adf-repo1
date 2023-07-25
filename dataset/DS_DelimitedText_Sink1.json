@@ -1,0 +1,28 @@
+{
+	"name": "DS_DelimitedText_Sink1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureDataLakeStorage_SOURCE",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "sql_ds"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "emp_table.csv",
+				"folderPath": "sql_ouput",
+				"fileSystem": "output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

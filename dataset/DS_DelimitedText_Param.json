@@ -1,0 +1,36 @@
+{
+	"name": "DS_DelimitedText_Param",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureDataLakeStorage_SOURCE",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"TABLE_SCHEMA": {
+				"type": "string"
+			},
+			"TABLE_NAME": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat(dataset().TABLE_SCHEMA,'_',dataset().TABLE_NAME,'.csv')",
+					"type": "Expression"
+				},
+				"folderPath": "sql_data2",
+				"fileSystem": "output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

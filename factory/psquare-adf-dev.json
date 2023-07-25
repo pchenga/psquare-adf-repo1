@@ -1,0 +1,9 @@
+{
+	"name": "psquare-adf-dev",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "944ace8d-8b6c-4c08-8e46-ff26c1f5193c",
+		"tenantId": "910728d6-218f-48a1-b720-8a7f18d75a11"
+	}
+}
