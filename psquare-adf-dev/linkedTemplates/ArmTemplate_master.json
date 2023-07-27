@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_AzureDataLakeStorage_SOURCE'"
 		},
+		"LS_AzureDatabricks_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'LS_AzureDatabricks'"
+		},
 		"LS_AzureSqlDatabase_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_AzureSqlDatabase'"
@@ -22,6 +26,10 @@
 		"LS_AzureDataLakeStorage_SOURCE_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://psquareadlsgen2.dfs.core.windows.net/"
+		},
+		"LS_AzureDatabricks_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0720-035221-buqyzfdn"
 		},
 		"containerUri": {
 			"type": "string",
@@ -53,6 +61,9 @@
 					"LS_AzureDataLakeStorage_SOURCE_accountKey": {
 						"value": "[parameters('LS_AzureDataLakeStorage_SOURCE_accountKey')]"
 					},
+					"LS_AzureDatabricks_accessToken": {
+						"value": "[parameters('LS_AzureDatabricks_accessToken')]"
+					},
 					"LS_AzureSqlDatabase_connectionString": {
 						"value": "[parameters('LS_AzureSqlDatabase_connectionString')]"
 					},
@@ -61,10 +72,33 @@
 					},
 					"LS_AzureDataLakeStorage_SOURCE_properties_typeProperties_url": {
 						"value": "[parameters('LS_AzureDataLakeStorage_SOURCE_properties_typeProperties_url')]"
+					},
+					"LS_AzureDatabricks_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('LS_AzureDatabricks_properties_typeProperties_existingClusterId')]"
 					}
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "psquare-adf-dev_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'psquare-adf-dev_ArmTemplate_0')]"
+			]
 		}
 	]
 }
